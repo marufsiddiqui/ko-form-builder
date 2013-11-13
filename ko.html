@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>My Form Builder</h1>
+
+<form data-bind='foreach: fields'>
+    <div>
+        <label> Enter label<input data-bind="value: label" type="text"/></label>
+    </div>
+    <div>
+        <label>Select Field Type</label>
+        <select data-bind="value: type">
+            <option value="text">Text</option>
+            <option value="select">Select</option>
+        </select>
+    </div>
+    <div data-bind="visible: type()=='select'">
+        <label>Enter comma separeted items</label>
+        <input type="text" data-bind="value: options"/>
+    </div>
+    <div>
+        <label>Is required?</label>
+        <input type="checkbox" data-bind="checked: isRequired"/>
+    </div>
+    <button data-bind="click: $root.removeField">Remove</button>
+</form>
+<button data-bind='click: addField, enable:fields().length<10'>Add New</button>
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/ko/knockout-3.0.0.js"></script>
+<script src="bower_components/ko/app.js"></script>
+
+</body>
+</html>
